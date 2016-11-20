@@ -1,5 +1,6 @@
+import config from '../config.js'
+import cacheHelper from './cacheHelper'
 export default {
-	ApiDomain: 'http://api.yimo.link',
     GetApiAddressByArtType(pageType) {
           var url = '';
           if(pageType == 'index') {
@@ -8,7 +9,7 @@ export default {
             var pageApiName = pageType == 'list' ? 'GetList' : 'GetDetail';
             url = "/api/ObtainData/" + pageApiName;
           }
-          return this.ApiDomain + url;
+          return config.apiDomain + url;
     },
     SendRequest(url, data, successCallback, other, type) {
         var other = other || {};
@@ -22,7 +23,7 @@ export default {
             successCallback(resp);
           },
           error: function(xhr, type, errorThrown) {
-            mui.toast('服务器异常') //异常处理
+            mui.toast('服务器异常,请稍后再试') //异常处理
           }
         }
         if(Object.assign) {
@@ -31,5 +32,16 @@ export default {
         } else {
           mui.ajax(url, def);
         }
+    },
+    GetMenuItems() {
+        var customMenu=cacheHelper.GetCacheByKey(config.customMenusCacheKey)
+        console.log(customMenu)
+        var menus=cacheHelper.GetCacheByKey(config.menusCacheKey);
+        if(customMenu!=null && customMenu.length>0){
+            customMenu.forEach(item=>{
+                menus.push(item);
+            })
+        }
+        return menus;
     }
 }

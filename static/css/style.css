@@ -4,7 +4,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
-body>div{height:100%;}
+body>#ymapp{height:100%;}
 .mui-content{height: 100%;}
 .title {
 	margin: 20px 15px 10px;
@@ -16,4 +16,7 @@ body>div{height:100%;}
 }
 .mui-content img{
 	max-width: 100%;
+}
+.hasnav{
+	padding-bottom: 50px;
 }

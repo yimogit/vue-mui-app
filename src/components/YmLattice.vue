@@ -1,31 +1,11 @@
 <template>
     <div :id="nid" class="mui-slider " style="margin-top:15px;height: 100%;">
-        <div class="mui-slider-group mui-slider-loop">
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <ul class="mui-table-view mui-grid-view mui-grid-9 bgtransparent">
-                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="item in items">
-                        <a :href="item.MenuUrl">
-                            <span :class="'mui-icon '+item.MenuIcon"></span>
-                            <div class="mui-media-body" v-text="item.MenuName"></div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="mui-slider-group">
             <div class="mui-slider-item">
                 <ul class="mui-table-view mui-grid-view mui-grid-9 bgtransparent">
                     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="item in items">
                         <a :href="item.MenuUrl">
-                            <span :class="'mui-icon '+item.MenuIcon"></span>
-                            <div class="mui-media-body" v-text="item.MenuName"></div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <ul class="mui-table-view mui-grid-view mui-grid-9 bgtransparent">
-                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="item in items">
-                        <a :href="item.MenuUrl">
-                            <span :class="'mui-icon '+item.MenuIcon"></span>
+                            <span :class="'mui-icon iconfont '+item.MenuIcon"></span>
                             <div class="mui-media-body" v-text="item.MenuName"></div>
                         </a>
                     </li>
@@ -47,12 +27,13 @@
         },
         methods:{
             InitSlide(id) {
-
                 var slider = document.getElementById(id);
                 var group = slider.querySelector('.mui-slider-group');
-                var dup=slider.querySelector('.mui-slider-item-duplicate');
+                var dup=document.getElementsByClassName('mui-slider-item-duplicate');
                 if(dup!=null && dup.length>0){
-                    group.removeAll(dup)
+                    mui.each(dup,(e,item)=>{
+                            group.removeChild(item);
+                    })
                 }
                 var items = mui('.mui-slider-item', group);
                 //克隆第一个节点
@@ -84,7 +65,7 @@
             let self=this;
             console.log('重置九宫格')
             self.$nextTick(()=>{
-                //self.InitSlide(self.nid);
+                self.InitSlide(self.nid);
             });
         }
     }

@@ -1,16 +1,18 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import index from '../pages/index'
+import home from '../pages/home'
 
 Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'hash',//hash 打包需要使用hash
     routes: [
-        {name:'/', path: '/',  component: index },
-        {name:'home', path: '/home',  component: index },
+        {name:'/', path: '/',  component: home },
+        {name:'home', path: '/home',  component: home },
         {name:'webpage', path: '/webpage/:openUrl',  component: require('../pages/webpage')},
         {name:'list', path: '/list/:type',  component: require('../pages/list') },
-        {name:'detail', path: '/detail/:type/:id',  component: require('../pages/detail') }
+        {name:'detail', path: '/detail/:type/:id',  component: require('../pages/detail') },
+        {name:'setting', path: '/setting',  component: require('../pages/setting') }
+        
     ]
 })
 
