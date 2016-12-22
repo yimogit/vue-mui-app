@@ -1,9 +1,9 @@
 <template>
     <div>
-        <ym-header title="私人定制" :back="true" :refresh="true">
+        <ym-header title="私人定制" :back="true" :refresh="true" id="header">
         </ym-header>
        <div class="mui-content" v-if="openUrl!=''">
-            <iframe :src="openUrl" style="width:100%;height:100%;border:0px;"></iframe>
+            <iframe :src="openUrl" :style="style"></iframe>
 		</div>
     </div>
 </template>
@@ -11,12 +11,17 @@
     export default {
         data () {
             return {
-                openUrl:''
+                openUrl:'',
+                style:''
             }
         },
         created(){
-            
-            this.openUrl=this.$route.params.openUrl
+            let self=this;
+            self.$nextTick(()=>{
+                var height = document.documentElement.clientHeight - document.getElementById('header').offsetHeight;
+                self.style='width:100%;border:0px;height:'+height+'px';
+                self.openUrl=this.$route.params.openUrl
+            })
         }
     }
 </script>
