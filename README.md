@@ -23,3 +23,5 @@ ps:导航图标不填会有默认的(有你也不知道填啥【笑哭】)；添
 ps2:欢迎加群438095365交流学习
 
 下载地址：https://www.pgyer.com/wodeapp
+
+pages地址：http://vue-mui.yimo.link
