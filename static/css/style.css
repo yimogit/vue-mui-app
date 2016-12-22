@@ -1,0 +1,22 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+body>#ymapp{height:100%;}
+.mui-content{height: 100%;}
+.title {
+	margin: 20px 15px 10px;
+	color: #6d6d72;
+	font-size: 15px;
+}
+.bgtransparent{
+	background-color: transparent !important;
+}
+.mui-content img{
+	max-width: 100%;
+}
+.hasnav{
+	padding-bottom: 50px;
+}
