@@ -24,4 +24,4 @@ ps2:欢迎加群438095365交流学习
 
 下载地址：https://www.pgyer.com/wodeapp
 
-pages地址：http://vue-mui.yimo.link
+pages地址：http://app.yimo.link
