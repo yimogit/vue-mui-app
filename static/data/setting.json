@@ -19,6 +19,16 @@
                 "MenuName": "D站",
                 "MenuIcon": "icon-videos",
                 "MenuUrl": "http://m.dilidili.com/"
+            },
+            {
+                "MenuName": "在线翻译",
+                "MenuIcon": "icon-jokes",
+                "MenuUrl": "https://tools.yimo.link/#/fanyi"
+            },
+            {
+                "MenuName": "二维码生成",
+                "MenuIcon": "icon-jokes",
+                "MenuUrl": "https://tools.yimo.link/#/qrcode"
             }
         ]
     }
