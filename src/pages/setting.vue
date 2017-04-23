@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <ym-header :title="'自定义菜单管理('+customMenu.length+')'" :back="true">
         </ym-header>
@@ -68,7 +68,7 @@ export default {
             editKey:null,
             defIcon:'icon-joke',
             showDefaultMenu:true,
-            appApiUrl:config.apiDomain+'/static/data.json',
+            appApiUrl:config.appDomain+'/static/data/setting.json',
             listyle:''
         }
     },
