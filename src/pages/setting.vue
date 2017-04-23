@@ -3,8 +3,8 @@
         <ym-header :title="'自定义菜单管理('+customMenu.length+')'" :back="true">
         </ym-header>
         <div class="mui-content hasnav">      
-			<div class="" style="z-index:20;margin: 5px;position: fixed;width: 100%;">
-                <form class="mui-input-group">
+			<div class="" style="z-index:20;margin: 5px;position: fixed;width: 100%;" id="form-content">
+                <form class="mui-input-group" >
                         <div class="mui-input-row">
                             <label>导航名称</label>
                             <input type="text" class="mui-input-clear" placeholder="导航名称" v-model="model.MenuName">
@@ -27,9 +27,14 @@
                                 <div class="mui-switch-handle"></div>
                             </div>
                         </div>
+                        <div class="mui-input-row">
+                            <label>接口地址</label>
+                            <input type="text" style="width:50%;float:left;" class="mui-input-clear" placeholder="接口地址" v-model="appApiUrl">
+                            <button type="button" class="mui-btn mui-btn-primary" style="float:right;" @click="saveApiUrl">保存</button>
+                        </div>
                 </form>                
             </div>     
-			<div class="mui-content-padded" style="z-index:19;margin: 5px;margin-top:220px;">
+			<div class="mui-content-padded" style="z-index:19;margin: 5px;margin-top:250px;" :style="listyle">
                 <ul class="mui-table-view">
                     <li class="mui-table-view-cell " v-for="item,index in customMenu">                        
                         <div class="mui-slider-right mui-disabled">
@@ -62,7 +67,9 @@ export default {
             customMenu:[],
             editKey:null,
             defIcon:'icon-joke',
-            showDefaultMenu:true
+            showDefaultMenu:true,
+            appApiUrl:config.apiDomain+'/static/data.json',
+            listyle:''
         }
     },
     methods:{
@@ -114,6 +121,10 @@ export default {
             this.showDefaultMenu=s;
             cacheHelper.SetCacheByKey(config.showDefaultMenuKey,s);
                 
+        },
+        saveApiUrl(){
+            cacheHelper.SetCacheByKey('appApiUrl',this.appApiUrl); 
+            mui.toast('保存成功')
         }
     },
     computed:{
@@ -124,6 +135,14 @@ export default {
         if(cacheHelper.GetCacheByKey(config.showDefaultMenuKey)==false){
             this.showDefaultMenu=false
         }
+        if(cacheHelper.GetCacheByKey('appApiUrl')){
+            this.appApiUrl=cacheHelper.GetCacheByKey('appApiUrl');
+        }
+    },
+    mounted(){
+        this.$nextTick(()=>{
+            this.listyle='margin-top:'+(document.getElementById('form-content').offsetHeight)+'px'
+        })
     }
 }
 </script>

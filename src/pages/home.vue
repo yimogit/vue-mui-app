@@ -1,14 +1,14 @@
 <template>
     <div>
-        <ym-header>
+        <ym-header id="header">
             <a class="mui-icon mui-icon-gear mui-pull-left" @click="$router.push('setting')"></a>
 			<h1 class="mui-title">私人定制</h1>			
 			<a class="mui-icon mui-icon-refresh mui-pull-right" @click="clearCache">
                 
             </a>
         </ym-header>
-       <div class="mui-content hasnav">
-           <ym-lattice :items="items"></ym-lattice>
+       <div class="mui-content hasnav" :style="winStyle">
+           <ym-lattice :items="items" :style="winStyle"></ym-lattice>
 		</div>
     </div>
 </template>
@@ -21,7 +21,8 @@ export default {
     data () {
         return {
             items:[],
-            menusCacheKey:'menusCacheKey'
+            menusCacheKey:'menusCacheKey',
+            winStyle:''
         }
     },
     components:{
@@ -41,6 +42,10 @@ export default {
             let self=this;      
             self.$parent.ShowLoading=true   
             let url=common.GetApiAddressByArtType('index');
+            var setUrl=cacheHelper.GetCacheByKey('appApiUrl');
+            if(setUrl){
+                url=setUrl
+            }
             common.SendRequest(url,{},resp=>{
                 // self.items=eval(resp.Data.Menus)
                 cacheHelper.SetCacheByKey(config.menusCacheKey,resp.Data.Menus)
@@ -83,6 +88,13 @@ export default {
         else{
             self.getMenus();
         }
+    },
+    mounted () {
+        let self=this;
+        self.$nextTick(()=>{
+            var height = document.documentElement.clientHeight - document.getElementById('header').offsetHeight;
+            self.winStyle='width:100%;height:'+height+'px';
+        })
     }
 
 }

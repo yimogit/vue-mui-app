@@ -4,7 +4,7 @@
         </ym-header>
        <div class="mui-content" v-if="openUrl!=''">
             <iframe :src="openUrl" :style="style"></iframe>
-		</div>
+        </div>
     </div>
 </template>
 <script>
