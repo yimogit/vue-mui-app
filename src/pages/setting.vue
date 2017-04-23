@@ -68,7 +68,7 @@ export default {
             editKey:null,
             defIcon:'icon-joke',
             showDefaultMenu:true,
-            appApiUrl:config.appDomain+'/static/data/setting.json',
+            appApiUrl:(location.origin.indexOf('http')==0?location.origin:config.appDomain)+'/static/data/setting.json',
             listyle:''
         }
     },

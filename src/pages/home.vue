@@ -46,15 +46,22 @@ export default {
             if(setUrl){
                 url=setUrl
             }
-            common.SendRequest(url,{},resp=>{
-                // self.items=eval(resp.Data.Menus)
-                cacheHelper.SetCacheByKey(config.menusCacheKey,resp.Data.Menus)
-                setTimeout(()=>{
-                    self.items=common.GetMenuItems();
-                    self.changeMenuUrl();
-                    self.$parent.ShowLoading=false
-                },10)                
-            })
+            try{
+                common.SendRequest(url,{},resp=>{
+                    // self.items=eval(resp.Data.Menus)
+                    cacheHelper.SetCacheByKey(config.menusCacheKey,resp.Data.Menus)
+                    setTimeout(()=>{
+                        self.items=common.GetMenuItems();
+                        self.changeMenuUrl();
+                        self.$parent.ShowLoading=false
+                    },10)                
+                })
+            }
+            catch(ex){
+                var domin= location.origin.indexOf('http')==0?location.origin:config.appDomain
+                cacheHelper.SetCacheByKey('appApiUrl',domin+'/static/data/setting.json'); 
+                self.getMenus();
+            }
         },
         changeMenuUrl(){
             let self=this;            
