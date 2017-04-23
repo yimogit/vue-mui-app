@@ -1,0 +1,25 @@
+{
+    "Status": 1,
+    "Msg": "ok",
+    "Data": {
+        "AppName": "私人定制",
+        "AppDownUrl": "",
+        "Menus": [
+            {
+                "MenuName": "A站",
+                "MenuIcon": "icon-videos",
+                "MenuUrl": "http://m.acfun.tv"
+            },
+            {
+                "MenuName": "B站",
+                "MenuIcon": "icon-videos",
+                "MenuUrl": "http://m.bilibili.com"
+            },
+            {
+                "MenuName": "D站",
+                "MenuIcon": "icon-videos",
+                "MenuUrl": "http://m.dilidili.com/"
+            }
+        ]
+    }
+}
