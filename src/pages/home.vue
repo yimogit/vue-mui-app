@@ -41,27 +41,21 @@ export default {
         getMenus(){   
             let self=this;      
             self.$parent.ShowLoading=true   
-            let url=common.GetApiAddressByArtType('index');
+            let domin= location.origin.indexOf('http')==0?location.origin:config.appDomain
+            let url=domin+'/static/data/setting.json'
             var setUrl=cacheHelper.GetCacheByKey('appApiUrl');
             if(setUrl){
                 url=setUrl
             }
-            try{
-                common.SendRequest(url,{},resp=>{
-                    // self.items=eval(resp.Data.Menus)
-                    cacheHelper.SetCacheByKey(config.menusCacheKey,resp.Data.Menus)
-                    setTimeout(()=>{
-                        self.items=common.GetMenuItems();
-                        self.changeMenuUrl();
-                        self.$parent.ShowLoading=false
-                    },10)                
-                })
-            }
-            catch(ex){
-                var domin= location.origin.indexOf('http')==0?location.origin:config.appDomain
-                cacheHelper.SetCacheByKey('appApiUrl',domin+'/static/data/setting.json'); 
-                self.getMenus();
-            }
+            common.SendRequest(url,{},resp=>{
+                // self.items=eval(resp.Data.Menus)
+                cacheHelper.SetCacheByKey(config.menusCacheKey,resp.Data.Menus)
+                setTimeout(()=>{
+                    self.items=common.GetMenuItems();
+                    self.changeMenuUrl();
+                    self.$parent.ShowLoading=false
+                },10)                
+            })
         },
         changeMenuUrl(){
             let self=this;            
