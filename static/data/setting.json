@@ -22,12 +22,12 @@
             },
             {
                 "MenuName": "在线翻译",
-                "MenuIcon": "icon-jokes",
+                "MenuIcon": "icon-joke",
                 "MenuUrl": "https://tools.yimo.link/#/fanyi"
             },
             {
                 "MenuName": "二维码生成",
-                "MenuIcon": "icon-jokes",
+                "MenuIcon": "icon-joke",
                 "MenuUrl": "https://tools.yimo.link/#/qrcode"
             }
         ]
